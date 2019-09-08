@@ -1,0 +1,19 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.example-chip-list {
+    width: 50%;    
+  }
+
+  .mat-standard-chip {
+      border-radius: 5px;
+  }
+
+  /* .mat-option {
+    height: 50px;
+    line-height: 20px;
+  }
+
+  .is-loading ::ng-deep .mat-option-text {
+    display: flex;
+    justify-content: center;
+  } */

@@ -1,0 +1,36 @@
+<mat-form-field class="example-chip-list" appearance="standard">  
+  
+  <mat-chip-list #chipList aria-label="Item selection">
+    <mat-chip
+      *ngFor="let item of items"
+      [selectable]="selectable"
+      [removable]="editable"
+      (removed)="remove(item)"      
+    >
+      {{ item }}
+      <mat-icon matChipRemove *ngIf="editable">cancel</mat-icon>
+    </mat-chip>
+    <input *ngIf="!editable && items.length === 0" placeholder="No items added" readonly style="border: none">
+    <input    
+      placeholder="Add item"
+      *ngIf="editable"      
+      #itemInput
+      [formControl]="itemCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)"
+    />
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <!-- <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option> -->
+    <!-- <ng-container *ngIf="!isLoading">
+               
+        </ng-container> -->
+    <mat-option *ngFor="let item of filteredItems | async" [value]="item">
+      {{ item }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
